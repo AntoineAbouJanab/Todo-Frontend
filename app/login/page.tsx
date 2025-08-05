@@ -28,10 +28,23 @@ const handleLogin = async (e: React.FormEvent) => {
     localStorage.setItem("token", token);
     router.push("/todos");
 
-  } catch (err: any) {
-    console.log("Login error:", err.response?.data);
-    setError(err.response?.data?.msg || "Login failed");
+  } catch (err: unknown) {
+  if (err && typeof err === "object" && "response" in err) {
+    const axiosErr = err as {
+      response?: {
+        data?: {
+          msg?: string;
+        };
+      };
+    };
+
+    console.log("Login error:", axiosErr.response?.data);
+    setError(axiosErr.response?.data?.msg || "Login failed");
+  } else {
+    console.log("Unexpected login error:", err);
+    setError("Login failed");
   }
+}
 };
 
   return (
@@ -69,7 +82,7 @@ const handleLogin = async (e: React.FormEvent) => {
         </button>
 
           <h1 className="pt-2 text-[0.6rem] sm:text-xs ">
-            Don't have an account yet?&nbsp;
+            Don&apos;t have an account yet?&nbsp;
             <Link className="underline" href="/register" passHref>
             SignUp
             </Link>
