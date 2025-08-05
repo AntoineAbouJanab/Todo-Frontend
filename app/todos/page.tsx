@@ -131,7 +131,7 @@ const deleteTodo = async (id: string) => {
         }}
         className="bg-light-grey text-white text-[15px] sm:text-sm px-3 py-1.5 rounded flex items-center justify-center gap-2 select-none cursor-pointer"
       >
-        <img src="/eye.png" alt="eye" className="w-3 h-3 sm:w-5 sm:h-5" /> Hide Completed
+        <img src="/eye.svg" alt="eye" className="w-3 h-3 sm:w-5 sm:h-5" /> Hide Completed
       </button>
     </div>
 
@@ -168,7 +168,7 @@ const deleteTodo = async (id: string) => {
                 className="ml-2 sm:ml-4 text-gray-400 hover:text-white text-base text-[1.2em] sm:text-xl select-none cursor-pointer"
                 onClick={() => deleteTodo(todo._id)}
               >
-                <img src="./delete.png" alt="Delete" className="w-4 h-4 sm:w-5 sm:h-5" />
+                <img src="./trash.svg" alt="Delete" className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </li>
           ))}

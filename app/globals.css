@@ -17,6 +17,9 @@ body{
   .bg-light-grey {
     background-color: hsl(218, 11%, 20%);
   }
+  .bg-offwhite{
+    background-color: hsl(220, 37%, 97%);
+  }
 
 }
 

@@ -91,7 +91,7 @@ typeof err.response.data.msg === "string"
 
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded cursor-pointer w-4/12"
+          className="bg-offwhite text-gray-800 p-2 rounded cursor-pointer w-4/12"
         >
           Register
         </button>
