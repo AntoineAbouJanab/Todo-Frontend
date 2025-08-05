@@ -24,10 +24,22 @@ export default function RegisterPage() {
 
       console.log("User registered:", res.data);
       router.push("/login");
-    } catch (err: any) {
-      console.error("Registration failed:", err);
-      setError(err.response?.data?.msg || "Registration failed");
-    }
+} catch (err: unknown) {
+  console.error("Registration failed:", err);
+
+  if (
+    err &&
+    typeof err === "object" &&
+    "response" in err &&
+    (err as any).response?.data?.msg
+  ) {
+    const errorMessage = (err as any).response.data.msg;
+    setError(errorMessage);
+  } else {
+    setError("Registration failed");
+  }
+}
+
   };
 
   return (
