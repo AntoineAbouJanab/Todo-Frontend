@@ -27,17 +27,33 @@ export default function RegisterPage() {
 } catch (err: unknown) {
   console.error("Registration failed:", err);
 
-  if (
-    err &&
-    typeof err === "object" &&
-    "response" in err &&
-    (err as any).response?.data?.msg
-  ) {
-    const errorMessage = (err as any).response.data.msg;
-    setError(errorMessage);
-  } else {
-    setError("Registration failed");
-  }
+if (
+  err &&
+  typeof err === "object" &&
+  "response" in err &&
+  err.response &&
+  typeof err.response === "object" &&
+  "data" in err.response &&
+  typeof err.response.data === "object" &&
+  err.response.data &&
+"msg" in err.response.data &&
+typeof err.response.data.msg === "string"
+
+) {
+  const errorMessage = (err as {
+    response: {
+      data: {
+        msg: string;
+      };
+    };
+  }).response.data.msg;
+
+  setError(errorMessage);
+} else {
+  setError("Registration failed");
+}
+
+
 }
 
   };
