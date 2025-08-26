@@ -117,11 +117,12 @@ const deleteTodo = async (id: string) => {
   <Header  />
 
   {/* Main Container (with enough padding for both fixed Header + Hide Completed) */}
-  <div className="pt-[7rem] sm:pt-[6rem] px-4 sm:px-6 max-w-2xl mx-auto text-[0.5em] sm:text-xs text-light-grey rounded-none sm:rounded-lg w-full overflow-hidden">
+  <div></div>
+  <div className=" pt-[7rem] sm:pt-[6rem] px-4 sm:px-6 max-w-2xl mx-auto text-[0.5em] sm:text-xs text-light-grey rounded-none sm:rounded-lg w-full overflow-hidden">
 
     {/* Completed Count + Hide Button (Fixed below Header) */}
-    <div className="fixed top-16 left-0 right-0 z-30 flex flex-col sm:flex-row sm:justify-between border sm:items-center gap-2 px-4 sm:px-6 py-2 bg-dark-grey border-b border-gray-700">
-      <span className="text-[10px] sm:text-sm text-gray-400 select-none text-center sm:text-left">
+    <div className="fixed top-16 left-0 right-0 z-30 flex flex-col sm:flex-row sm:justify-between border sm:items-center gap-2 px-4 sm:px-6 py-2 bg-gray-300 dark:bg-dark-grey border-b border-gray-700">
+      <span className="text-[10px] sm:text-sm text-gray-700 dark:text-gray-300 select-none text-center sm:text-left">
         {todos.filter(todo => todo.completed).length} Completed
       </span>
       <button
@@ -129,7 +130,7 @@ const deleteTodo = async (id: string) => {
           setHideCompleted(!hideCompleted);
           console.log(hideCompleted);
         }}
-        className="bg-light-grey text-white text-[15px] sm:text-sm px-3 py-1.5 rounded flex items-center justify-center gap-2 select-none cursor-pointer"
+        className="dark:bg-light-grey bg-gray-100 text-grey-800 dark:text-gray-300 text-[15px] sm:text-sm px-3 py-1.5 rounded flex items-center justify-center gap-2 select-none cursor-pointer"
       >
         <img src="/eye.svg" alt="eye" className="w-3 h-3 sm:w-5 sm:h-5" /> Hide Completed
       </button>
@@ -143,11 +144,11 @@ const deleteTodo = async (id: string) => {
           .map((todo) => (
             <li
               key={todo._id}
-              className="flex justify-between items-start sm:items-center bg-dark-grey rounded px-3 sm:px-4 py-2 sm:py-0.5"
+              className="flex justify-between items-start sm:items-center bg-gray-200 dark:bg-[#2d3239] rounded px-3 sm:px-4 py-2 sm:py-3"
             >
               <span
                 className={`flex-1 flex items-center gap-2 cursor-pointer select-none text-[18px] sm:text-sm leading-snug ${
-                  todo.completed ? "text-gray-400" : "text-white"
+                  todo.completed ? "text-gray-800 dark:text-gray-400" : "text-gray-600 dark:text-white"
                 }`}
                 onClick={() => toggleComplete(todo._id)}
               >
@@ -176,21 +177,21 @@ const deleteTodo = async (id: string) => {
     </div>
 
     {/* New Todo Input */}
-    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mt-6 bg-light-grey rounded px-3 sm:px-4 py-2">
+    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mt-6 bg-gray-200 dark:bg-light-grey rounded px-3 sm:px-4 py-2">
       <input
-        className="flex-1 bg-transparent placeholder-gray-400 text-white focus:outline-none text-[11px] sm:text-sm"
+        className="flex-1 bg-transparent placeholder-gray-400 text-grey-800 dark:text-white focus:outline-none text-[11px] sm:text-sm"
         value={newTodo}
         onChange={(e) => setNewTodo(e.target.value)}
         placeholder="New Note"
       />
       <button
         onClick={addTodo}
-        className="bg-white text-black font-medium px-3 py-2 sm:px-4 sm:py-2 rounded select-none cursor-pointer text-[11px] sm:text-sm"
+        className="bg-blue-500 text-white dark:bg-white dark:text-gray-800 font-medium px-3 py-2 sm:px-4 sm:py-2 rounded select-none cursor-pointer text-[11px] sm:text-sm"
       >
         Add New Note
       </button>
     </div>
-    
+       
   </div>
 </>
 

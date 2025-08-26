@@ -61,7 +61,7 @@ typeof err.response.data.msg === "string"
   return (
     <>
     <Header></Header>
-    <div className="flex flex-col items-center justify-center min-h-screen bg-dark-grey p-4 color-light-grey text-xs w-full">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200 dark:bg-dark-grey p-4 text-gray-700 dark:text-gray-200 text-xs w-full">
       <form
         onSubmit={handleRegister}
         className="flex flex-col w-full max-w-sm items-center"
@@ -91,7 +91,7 @@ typeof err.response.data.msg === "string"
 
         <button
           type="submit"
-          className="bg-offwhite text-gray-800 p-2 rounded cursor-pointer w-4/12"
+          className=" bg-blue-300 text-grey-800 dark:bg-gray-100 text-gray-800 p-2 rounded cursor-pointer w-4/12"
         >
           Register
         </button>

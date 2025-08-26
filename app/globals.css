@@ -1,8 +1,38 @@
+@config "../tailwind.config.mjs";
 @import "tailwindcss";
 
-body{
-    background-color: hsl(220, 11%, 15%);
+/* Theme variables for fields */
+:root {
+  --field-bg: hsl(220, 14%, 96%);           /* light input bg */
+  --field-text: #111827;         /* gray-900 */
 }
+html.dark {
+  --field-bg: hsl(218, 11%, 20%); /* your light-grey */
+  --field-text: hsl(216, 2%, 88%); /* near white */
+}
+
+/* Base styling so inputs follow the variables by default */
+@layer base {
+  input, textarea, select {
+    @apply rounded px-3 py-2 ring-1 ring-gray-300 dark:ring-gray-600 outline-none;
+    background-color: var(--field-bg);
+    color: var(--field-text);
+  }
+  input::placeholder {
+    @apply text-gray-500 dark:text-gray-400;
+  }
+}
+
+/* Tame Chrome autofill so it doesn't force its own bg/text */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--field-text) !important;
+  box-shadow: 0 0 0px 1000px var(--field-bg) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
 @layer utilities {
   .bg-dark-grey {
     background-color: hsl(220, 11%, 15%);
@@ -24,15 +54,7 @@ body{
 }
 
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-  box-shadow: 0 0 0px 1000px hsl(218, 11%, 20%) inset !important;
-  -webkit-text-fill-color: hsl(216, 2%, 58%) !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
+
 
 html {
   font-size: 30px; /* or even 18px */
