@@ -23,14 +23,6 @@ html.dark {
   }
 }
 
-/* Tame Chrome autofill so it doesn't force its own bg/text */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: var(--field-text) !important;
-  box-shadow: 0 0 0px 1000px var(--field-bg) inset !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
 
 
 @layer utilities {
@@ -50,9 +42,37 @@ input:-webkit-autofill:focus {
   .bg-offwhite{
     background-color: hsl(220, 37%, 97%);
   }
+    .field {
+    @apply ring-1 ring-gray-300 dark:ring-gray-600 rounded px-3 py-2 outline-none;
+    background-color: var(--field-bg) !important;
+    color: var(--field-text) !important;
+    /* helps on some browsers */
+    background-clip: padding-box;
+  }
+  /* Tame Chrome autofill so it doesn't force its own bg/text */
+/* Neutralize Chrome autofill so utilities can win */
+
+
+
 
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--field-text) !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important; /* clear overlay */
+          box-shadow: 0 0 0 1000px transparent inset !important;
+  transition: background-color 0s;
+}
 
+/* Opt-in: reapply themed bg for autofilled fields ONLY when you use .field */
+.field:-webkit-autofill,
+.field:-webkit-autofill:hover,
+.field:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--field-bg) inset !important;
+          box-shadow: 0 0 0 1000px var(--field-bg) inset !important;
+  -webkit-text-fill-color: var(--field-text) !important;
+}
 
 
 
